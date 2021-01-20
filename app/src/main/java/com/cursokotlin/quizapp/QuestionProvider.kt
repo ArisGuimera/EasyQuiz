@@ -6,13 +6,11 @@ class QuestionProvider {
 
             return listOf(
                 QuestionData(
-                    header = "https://cursokotlin.com/wp-content/uploads/2020/09/Webp.net-compress-image.jpg",
+                    header = "https://hipertextual.com/files/2019/06/hipertextual-kotlin-lenguaje-oficial-android-que-quiere-comerse-java-2019922347.jpg",
                     title = "Usamos la palabra reservada var para...",
                     answers = listOf(
                         AnswerData(title = "Variable", isCorrect = true),
-                        AnswerData(title = "Valor constante", isCorrect = false),
-                        AnswerData(title = "Crear una función", isCorrect = false),
-                        AnswerData(title = "Compilar la app", isCorrect = false)
+                        AnswerData(title = "Valor constante", isCorrect = false)
                     )
                 ),
                 QuestionData(
@@ -21,7 +19,6 @@ class QuestionProvider {
                     answers = listOf(
                         AnswerData(title = "Variable", isCorrect = true),
                         AnswerData(title = "Valor constante", isCorrect = false),
-                        AnswerData(title = "Crear una función", isCorrect = false),
                         AnswerData(title = "Compilar la app", isCorrect = false)
                     )
                 ),
@@ -31,7 +28,6 @@ class QuestionProvider {
                     answers = listOf(
                         AnswerData(title = "adw", isCorrect = true),
                         AnswerData(title = "adwd constante", isCorrect = false),
-                        AnswerData(title = "dwad una función", isCorrect = false),
                         AnswerData(title = "Compilar dawd app", isCorrect = false)
                     )
                 ),

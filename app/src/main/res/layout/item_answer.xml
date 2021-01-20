@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btnAnswer"
+    style="@style/buttonQuestion"
+    android:layout_marginTop="8dp"/>

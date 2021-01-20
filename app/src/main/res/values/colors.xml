@@ -9,4 +9,18 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#00FF05</color>
     <color name="red">#FF0000</color>
+    <color name="orange">#fa8c0c</color>
+    <color name="purple">#6976e1</color>
+
+    <color name="primaryColor">#393939</color>
+    <color name="primaryLightColor">#636363</color>
+    <color name="primaryDarkColor">#131313</color>
+    <color name="secondaryColor">#f98909</color>
+    <color name="secondaryLightColor">#ffba47</color>
+    <color name="secondaryDarkColor">#c05b00</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
+
+
+
 </resources>

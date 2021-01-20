@@ -2,15 +2,18 @@ package com.cursokotlin.quizapp
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.cursokotlin.quizapp.databinding.FragmentQuestionBinding
+import com.cursokotlin.quizapp.ui.answer.AnswerAdapter
+import com.cursokotlin.quizapp.ui.answer.AnswerViewHolder
+
 
 class QuestionFragment : Fragment() {
 
@@ -19,6 +22,7 @@ class QuestionFragment : Fragment() {
 
     private var listener: OnQuestionActionListener? = null
 
+    lateinit var adapter:AnswerAdapter
 
     lateinit var question:QuestionData
 
@@ -42,12 +46,11 @@ class QuestionFragment : Fragment() {
         return binding.root
     }
 
-    private fun disableAnswer(){
-        binding.btn4.isEnabled = false
-        binding.btn3.isEnabled = false
-        binding.btn2.isEnabled = false
-        binding.btn1.isEnabled = false
-    }
+//    private fun disableAnswer(){
+//
+//        fo
+//        adapter.itemCount
+//    }
 
     private fun initTitleQuestion(title: String) {
         binding.tvQuestion.text = title
@@ -65,8 +68,7 @@ class QuestionFragment : Fragment() {
         }else{
             button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.red))
         }
-        disableAnswer()
-        listener?.onAnswerClicked(answer)
+//        disableAnswer()
     }
 
 
@@ -77,26 +79,40 @@ class QuestionFragment : Fragment() {
     }
 
     private fun initAnswerQuestion(answers: List<AnswerData>) {
-        if (answers.size == 4) {
-            binding.btn1.text = answers[0].title
-            binding.btn2.text = answers[1].title
-            binding.btn3.text = answers[2].title
-            binding.btn4.text = answers[3].title
+        binding.rvAnswer.layoutManager = LinearLayoutManager(requireContext())
+        adapter = AnswerAdapter(answers) { answerData, position ->  onAnswerSelected(answerData, position)}
+        binding.rvAnswer.adapter = adapter
+
+//        if (answers.size == 4) {
+//            binding.btn1.text = answers[0].title
+//            binding.btn2.text = answers[1].title
+//            binding.btn3.text = answers[2].title
+//            binding.btn4.text = answers[3].title
+//
+//
+//            binding.btn1.setOnClickListener {
+//                checkIsCorrect(answers[0], binding.btn1)
+//            }
+//            binding.btn2.setOnClickListener {
+//                checkIsCorrect(answers[1], binding.btn2)
+//            }
+//            binding.btn3.setOnClickListener {
+//                checkIsCorrect(answers[2], binding.btn3)
+//            }
+//            binding.btn4.setOnClickListener {
+//                checkIsCorrect(answers[3], binding.btn4)
+//            }
+//        }
+    }
+
+    private fun onAnswerSelected(result: AnswerData, position: Int) {
+        val viewHolder = binding.rvAnswer.findViewHolderForAdapterPosition(position)
+        checkIsCorrect(result, (viewHolder  as AnswerViewHolder).btnAnswer)
 
 
-            binding.btn1.setOnClickListener {
-                checkIsCorrect(answers[0], binding.btn1)
-            }
-            binding.btn2.setOnClickListener {
-                checkIsCorrect(answers[1], binding.btn2)
-            }
-            binding.btn3.setOnClickListener {
-                checkIsCorrect(answers[2], binding.btn3)
-            }
-            binding.btn4.setOnClickListener {
-                checkIsCorrect(answers[3], binding.btn4)
-            }
-        }
+
+
+        listener?.onAnswerClicked(result)
     }
 
 
