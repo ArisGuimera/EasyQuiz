@@ -1,7 +1,13 @@
 package com.cursokotlin.quizapp
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,7 +80,8 @@ class QuestionFragment : Fragment() {
 
     private fun initQuestion(questions: QuestionData) {
         initImageQuestion(questions.header)
-        initTitleQuestion(questions.title)
+//        initTitleQuestion(questions.title)
+        formatQuestion(questions.title)
         initAnswerQuestion(questions.answers)
     }
 
@@ -126,6 +133,38 @@ class QuestionFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listener = null
+    }
+
+    fun formatQuestion(question:String){
+//        Usamos la palabra reservada <code>var<code> para...
+        val parts = question.split("<code>")
+        if(parts.size == 1){
+//            return SpannableString(parts[0])
+        }else if(parts.size == 3){
+            val spannable = SpannableString("${parts[0]} ${parts[1]} ${parts[2]}")
+
+            spannable.setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(activity as Context, R.color.orange)),
+                parts[0].length +1,  parts[0].length + parts[1].length +1,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            spannable.setSpan(
+                BackgroundColorSpan(ContextCompat.getColor(activity as Context, R.color.primaryDarkColor)),
+                parts[0].length +1,  parts[0].length + parts[1].length +1,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            spannable.setSpan(
+                StyleSpan(android.graphics.Typeface.NORMAL),
+                parts[0].length +1,  parts[0].length + parts[1].length +1,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+// spannable.setSpan(
+//                ForegroundColorSpan(Color.RED),
+//                0,  2,
+//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+//
+            binding.tvQuestion.text = spannable
+        }
     }
 
 
